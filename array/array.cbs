@@ -1,0 +1,57 @@
+ld std.cbs
+
+dec array > name
+    scp &name
+    set lastIndex i -1
+    set len i 0
+dn
+
+dec arr_set > arr key value
+    !cp key s &key &arr
+    !cp value s &value &arr
+
+    scp &arr
+    set &key s &value
+    add len &len 1
+
+    prg key
+    prg value
+dn
+
+dec arr_push > arr value
+    !cp value s &value &arr
+    !cp arr s &arr &arr
+
+    scp &arr
+    add lastIndex &lastIndex 1
+    !arr_set &arr &lastIndex &value
+
+    prg value
+    prg arr
+dn
+
+dec arr_get > arr key save_var
+    !cp key s &key &arr
+    !cp save_var s &save_var &arr
+    !cp scope s &callScope &arr
+
+    scp &arr
+    mir &key value
+    !cp &save_var s &value &scope
+
+    prg key
+    prg save_var
+    prg scope
+    prg value
+dn
+
+dec arr_len > arr var_save
+    !cp var_save s &var_save &arr
+    !cp callScope s &callScope &arr
+
+    scp &arr
+    !cp &var_save i &len &callScope
+
+    prg var_save
+    prg callScope
+dn

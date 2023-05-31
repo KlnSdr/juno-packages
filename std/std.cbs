@@ -1,0 +1,22 @@
+set _EOL s '<br>'
+
+dec ln > txt
+    res &txt *EOL
+dn
+
+dec prnt > txt
+    res &txt
+dn
+
+dec cp > name type value newScope
+    set _shiftValue &type &value
+    set _shiftName s &name
+    set _shiftType s &type
+
+    scp &newScope
+    set *shiftName *shiftType *shiftValue
+
+    prg _shiftName
+    prg _shiftValue
+    prg _shiftType
+dn
