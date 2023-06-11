@@ -1,22 +1,41 @@
-set _EOL s '<br>'
-
-dec ln > txt
-    res &txt *EOL
-dn
-
-dec prnt > txt
-    res &txt
-dn
-
-dec cp > name type value newScope
-    set _shiftValue &type &value
+dec cp > name newScope newName
+    mir newScope _newScope
     set _shiftName s &name
-    set _shiftType s &type
+    set _newName s &newName
+    
+    scp &callScope
+    mir *shiftName _tmpShiftVar
 
-    scp &newScope
-    set *shiftName *shiftType *shiftValue
+    scp *newScope
+    mir _tmpShiftVar *shiftName
+
+    if *newName != '&newName'
+        mir *shiftName *newName
+        prg *shiftName
+    fi
 
     prg _shiftName
-    prg _shiftValue
-    prg _shiftType
+    prg _tmpShiftVar
+    prg _newScope
+    prg _newName
+dn
+
+dec isdef > var_name var_save
+    set _var_name s &var_name
+
+    scp &callScope
+    mir *var_name _var
+    scp isdef
+
+    con check '-' *var
+    
+    set &var_save s 'false'
+    if &check != '-var'
+        set &var_save s 'true'
+    fi
+
+    !cp &var_save &callScope
+
+    prg _var_name
+    prg _var
 dn
