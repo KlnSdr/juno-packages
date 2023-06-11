@@ -28,9 +28,9 @@ dec json_build > name save_var
     loop
         !arr_get &arrKeys &i key
 
-        !arr_get &arrValues &key value
+        !arr_get &arrValues &key val
 
-        con output &output " &key ":" &value "
+        con output &output " &key ":" &val "
 
 
         add i &i 1
@@ -44,5 +44,5 @@ dec json_build > name save_var
         fi
     pool
 
-    !cp output s &output &callScope
+    !cp output &callScope &save_var
 dn
