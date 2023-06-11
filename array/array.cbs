@@ -1,4 +1,4 @@
-ld std.cbs
+ld lib/std.cbs
 
 dec array > name
     scp &name
@@ -7,8 +7,8 @@ dec array > name
 dn
 
 dec arr_set > arr key value
-    !cp key s &key &arr
-    !cp value s &value &arr
+    !cp key &arr
+    !cp value &arr
 
     scp &arr
     set &key s &value
@@ -19,8 +19,8 @@ dec arr_set > arr key value
 dn
 
 dec arr_push > arr value
-    !cp value s &value &arr
-    !cp arr s &arr &arr
+    !cp value &arr
+    !cp arr &arr
 
     scp &arr
     add lastIndex &lastIndex 1
@@ -31,13 +31,13 @@ dec arr_push > arr value
 dn
 
 dec arr_get > arr key save_var
-    !cp key s &key &arr
-    !cp save_var s &save_var &arr
-    !cp scope s &callScope &arr
+    !cp key &arr
+    !cp save_var &arr
+    !cp callScope &arr scope
 
     scp &arr
     mir &key value
-    !cp &save_var s &value &scope
+    !cp value &scope &save_var
 
     prg key
     prg save_var
@@ -46,12 +46,29 @@ dec arr_get > arr key save_var
 dn
 
 dec arr_len > arr var_save
-    !cp var_save s &var_save &arr
-    !cp callScope s &callScope &arr
+    !cp var_save &arr
+    !cp callScope &arr
 
     scp &arr
-    !cp &var_save i &len &callScope
+    !cp len &callScope &var_save
 
     prg var_save
     prg callScope
+dn
+
+dec arr_last > arr var_save
+    !cp var_save &arr
+    mir callScope scp
+    !cp scp &arr
+    !cp arr &arr
+
+    scp &arr
+    !arr_get &arr &lastIndex last
+    !cp last &scp &var_save
+
+    prg arr
+    prg var_save
+    prg scp
+    prg arr
+    prg last
 dn
