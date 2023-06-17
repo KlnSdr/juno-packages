@@ -1,0 +1,122 @@
+ld std.juno
+
+dec array > name:s
+    scp &name
+    set lastIndex i -1
+    set len i 0
+dn
+
+dec array_set_s > arr:s key:s value:s
+    !cp key &arr key
+    !cp value &arr value
+
+    scp &arr
+    set &key s &value
+    add len &len 1
+
+    prg key
+    prg value
+dn
+
+dec array_set_i > arr:s key:s value:i
+    !cp key &arr key
+    !cp value &arr value
+
+    scp &arr
+    set &key i &value
+    add len &len 1
+
+    prg key
+    prg value
+dn
+
+dec array_set_f > arr:s key:s value:f
+    !cp key &arr key
+    !cp value &arr value
+
+    scp &arr
+    set &key f &value
+    add len &len 1
+
+    prg key
+    prg value
+dn
+
+dec array_push_s > arr:s value:s
+    !cp value &arr value
+    !cp arr &arr arr
+
+    scp &arr
+    add lastIndex &lastIndex 1
+    !array_set_s &arr &lastIndex &value
+
+    prg value
+    prg arr
+dn
+
+dec array_push_i > arr:s value:i
+    !cp value &arr value
+    !cp arr &arr arr
+
+    scp &arr
+    add lastIndex &lastIndex 1
+    !array_set_i &arr &lastIndex &value
+
+    prg value
+    prg arr
+dn
+
+dec array_push_f > arr:s value:f
+    !cp value &arr value
+    !cp arr &arr arr
+
+    scp &arr
+    add lastIndex &lastIndex 1
+    !array_set_f &arr &lastIndex &value
+
+    prg value
+    prg arr
+dn
+
+dec array_get > arr:s key:s save_var:s
+    !cp key &arr key
+    !cp save_var &arr save_var
+    !cp callScope &arr scope
+
+    scp &arr
+    mir value &key
+    !cp value &scope &save_var
+
+    prg key
+    prg save_var
+    prg scope
+    prg value
+dn
+
+dec array_len > arr:s var_save:s
+    !cp var_save &arr var_save
+    !cp callScope &arr callScope
+
+    scp &arr
+    !cp len &callScope &var_save
+
+    prg var_save
+    prg callScope
+dn
+
+dec array_last > arr:s var_save:s
+    !cp var_save &arr var_save
+    mir scp callScope
+    !cp scp &arr scp
+    !cp arr &arr arr
+
+    scp &arr
+    !array_get &arr &lastIndex last
+    !cp last &scp &var_save
+
+    prg arr
+    prg var_save
+    prg scp
+    prg arr
+    prg last
+dn
