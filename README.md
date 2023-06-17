@@ -1,6 +1,18 @@
 # juno-packages
 - [std.juno](#stdjuno)
+  - [cp](#cp)
+  - [isdef](#isdef)
 - [array.juno](#arrayjuno)
+  - [array](#array)
+  - [array_set_s](#array_set_s)
+  - [array_set_i](#array_set_i)
+  - [array_set_f](#array_set_f)
+  - [array_push_s](#array_push_s)
+  - [array_push_i](#array_push_i)
+  - [array_push_f](#array_push_f)
+  - [array_get](#array_get)
+  - [array_len](#array_len)
+  - [array_last](#array_last)
 
 ## std.juno
 ### desciption:
@@ -64,7 +76,7 @@ out &existsMsg # true
 ### desciption:
 a package providing support for simple arrays with elements of mixed type
 ### dependencies
-- std.juno
+- [std.juno](#stdjuno)
 ### functions
 #### array
 this function creates a new scope with the given name holding an empty array
