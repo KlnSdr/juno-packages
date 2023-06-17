@@ -1,4 +1,7 @@
 # juno-packages
+- [std.juno](#stdjuno)
+- [array.juno](#arrayjuno)
+
 ## std.juno
 ### desciption:
 a package providing functionality needed in almost every script.
