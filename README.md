@@ -13,6 +13,15 @@
   - [array_get](#array_get)
   - [array_len](#array_len)
   - [array_last](#array_last)
+- [boolean.juno](#booleanjuno)
+  - [and](#and)
+  - [not](#not)
+  - [nand](#nand)
+  - [or](#or)
+  - [nor](#nor)
+  - [xor](#xor)
+  - [impl](#impl)
+  - [equ](#equ)
 
 ## std.juno
 ### desciption:
@@ -276,8 +285,181 @@ out &lastUser # lastUser
 !array_lst userNames lastUser
 out &lastUser # Jane Doe
 ```
+## boolean.juno
+### desciption
+a package providing support for basic boolean algebra
+### dependencies
+- [std.juno](#stdjuno)
+### functions
+#### and
+performs the logical and operation on its inputs
 
+signature: `dec and > a:i b:i save_var:s`
 
+parameters:
+- a
+  - type: i (integer)
+  - value a
+-b
+  - type: i (integer)
+  - value b
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+set b i 0
+!and &a &b result
+out &result # 0
+```
+#### not
+performs the logical not operation on its input
 
+signature: `dec not > a:i save_var:s`
 
+parameters:
+- a
+  - type: i (integer)
+  - value a
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+!not &a result
+out &result # 0
+```
+#### nand
+performs the logical nand operation on its inputs
 
+signature: `dec nand > a:i b:i save_var:s`
+
+parameters:
+- a
+  - type: i (integer)
+  - value a
+-b
+  - type: i (integer)
+  - value b
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+set b i 0
+!nand &a &b result
+out &result # 1
+```
+#### or
+performs the logical or operation on its inputs
+
+signature: `dec or > a:i b:i save_var:s`
+
+parameters:
+- a
+  - type: i (integer)
+  - value a
+-b
+  - type: i (integer)
+  - value b
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+set b i 0
+!or &a &b result
+out &result # 1
+```
+#### nor
+performs the logical nor operation on its inputs
+
+signature: `dec nor > a:i b:i save_var:s`
+
+parameters:
+- a
+  - type: i (integer)
+  - value a
+-b
+  - type: i (integer)
+  - value b
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+set b i 0
+!nor &a &b result
+out &result # 0
+```
+#### xor
+performs the logical xor operation on its inputs
+
+signature: `dec xor > a:i b:i save_var:s`
+
+parameters:
+- a
+  - type: i (integer)
+  - value a
+-b
+  - type: i (integer)
+  - value b
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+set b i 0
+!xor &a &b result
+out &result # 1
+```
+#### impl
+performs the logical implication operation on its inputs
+
+signature: `dec impl > a:i b:i save_var:s`
+
+parameters:
+- a
+  - type: i (integer)
+  - value a
+-b
+  - type: i (integer)
+  - value b
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+set b i 0
+!impl &a &b result
+out &result # 0
+```
+#### equ
+performs the logical equivalence operation on its inputs
+
+signature: `dec equ > a:i b:i save_var:s`
+
+parameters:
+- a
+  - type: i (integer)
+  - value a
+-b
+  - type: i (integer)
+  - value b
+- save_var
+  - type: s (string)
+  - the name of the variable in the current scope used to save the result
+example:
+```
+set a i 1
+set b i 0
+!equ &a &b result
+out &result # 0
+```

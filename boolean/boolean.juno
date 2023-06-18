@@ -1,0 +1,68 @@
+ld std.juno
+
+dec and > a:i b:i save_var:s
+    set result i 0
+    
+    set boolA i 0
+    if:i &a > 0
+        set boolA i 1
+    fi
+
+    set boolB i 0
+    if:i &b > 0
+        set boolB i 1
+    fi
+
+    add c &boolA &boolB
+    set result i 0
+    if:i &c = 2
+        set result i 1
+    fi
+    !cp result &callScope &save_var
+dn
+
+dec not > a:i save_var:s
+    set result i 1
+    if:i &a > 0
+        set result i 0
+    fi
+    !cp result &callScope &save_var
+dn
+
+dec nand > a:i b:i save_var:s
+    !and &a &b ANDresult
+    !not &ANDresult NOTresult
+    !cp NOTresult &callScope &save_var
+dn
+
+dec or > a:i b:i save_var:s
+    !nand &a 1 a
+    !nand &b 1 b
+    !nand &a &b result
+    !cp result &callScope &save_var
+dn
+
+dec nor > a:i b:i save_var:s
+    !or &a &b ORresult
+    !not &ORresult NOTresult
+    !cp NOTresult &callScope &save_var
+dn
+
+dec xor > a:i b:i save_var:s
+    !or &a &b ORresult
+    !nand &a &b NANDresult
+    !and &ORresult &NANDresult result
+    !cp result &callScope &save_var
+dn
+
+dec impl > a:i b:i save_var:s
+    !not &a NOTa
+    !or &NOTa &b result
+    !cp result &callScope &save_var
+dn
+
+dec equ > a:i b:i save_var:s
+    !xor &a &b result
+    !not &result result
+    !cp result &callScope &save_var
+dn
